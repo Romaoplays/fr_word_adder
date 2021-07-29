@@ -39,8 +39,8 @@ def add_to_csv(word):
 
 while True:
     print("\nWhat to do?\n1 - Define\n2 - Reverse Translate \n3 - View words")
-    resposta = input()
-    if resposta == "1":
+    resposta_inicial = input()
+    if resposta_inicial == "1":
         print("\nType out word:")
         resposta_palavra_portugues = input()
         current_word = get_monolingual_translation(resposta_palavra_portugues)
@@ -54,21 +54,21 @@ while True:
                 print(f"\n\n## Example phrase - {frase_exemplo}")
 
             print("\nWhat to do?\n1 - Add word\n2 - Translate\n3 - Quit")
-            resposta = input()
-            if resposta == "1":
+            resposta_secundaria = input()
+            if resposta_secundaria == "1":
                 add_to_csv(resposta_palavra_portugues)
-            if resposta == "2":
+            if resposta_secundaria == "2":
                 translated_word = get_translation(resposta_palavra_portugues)
-                for i in range(len(current_word)):
+                for i in range(len(translated_word)):
                     if i < 5:
-                        print(f"\n\Translation #{i+1}: \n{current_word[i]}")
-                print("\nWhat to do?\n 1 - Add word\n2 - Quit")
-                resposta = input()
-                if resposta == "1":
+                        print(f"\nTranslation #{i+1}: \n{translated_word[i]}")
+                print("\nWhat to do?\n1 - Add word\n2 - Quit")
+                resposta_terciaria = input()
+                if resposta_terciaria == "1":
                     add_to_csv(resposta_palavra_portugues)
         else:
             print("\n!!!Translation not found!!!")
-    if resposta == "2":
+    elif resposta_inicial == "2":
         print("\nType out word:")
         resposta_palavra_ingles = input()
         current_word = get_reverse_translation(resposta_palavra_ingles)
@@ -79,7 +79,7 @@ while True:
 
         else:
             print("\n!!!Translation not found!!!")
-    if resposta == "3":
+    elif resposta_inicial == "3":
         csv_file = open("fr_words.csv", "r", encoding="utf-8-sig")
         csv_reader = csv.reader(csv_file)
         csv_list = list(csv_reader)
